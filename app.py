@@ -16,7 +16,11 @@ from rdkit.DataStructs.cDataStructs import TanimotoSimilarity
 import selfies
 from selfies import encoder, decoder
 
-st.set_page_config(page_title='Mutating Molecules with a Genetic Algorithm', layout='centered')
+st.set_page_config(
+    page_title='Mutating Molecules with a Genetic Algorithm',
+    layout='centered',
+    page_icon=":octopus:",
+    initial_sidebar_state="expanded")
 
 st.sidebar.header("Adjustable Parameters")
 st.sidebar.write("A generation is a set of molecules to be evolved")
@@ -214,15 +218,8 @@ starting_smile     = 'CC1=C(C2=C(CCC(O2)(C)COC3=CC=C(C=C3)CC4C(=O)NC(=O)S4)C(=C1
 show_gen_out       = False
 len_random_struct  = len(get_selfie_chars(encoder(starting_smile))) # Length of the starting SELFIE structure
 
-st.markdown("""
-<style>
-.big-font {
-    font-size:3.2rem !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
-st.markdown('<p class="big-font">Mutating Drug Molecules</p>', unsafe_allow_html=True)
+st.title("Mutating drug molecules ")
 st.markdown("I made this app using code from the paper *Beyond Generative Models: Superfast Traversal, Optimization, Novelty, Exploration and Discovery (STONED) Algorithm for Molecules using SELFIES*. I used the molecule scopolamine as the starting structure, a phytochemical with anti-parkinsons drug properties. The genetic algorithm is capable of producing novel molecules on par with GPU powered deep learning models without the expensive resources")
 
 #st.sidebar.title("")
