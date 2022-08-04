@@ -2,6 +2,8 @@ import time
 import random
 import numpy as np
 import streamlit as st
+import selfies
+from selfies import encoder, decoder
 
 ########## RDKIT & SELFIES ##########
 import rdkit
@@ -13,8 +15,6 @@ from rdkit.Chem.AtomPairs.Sheridan import GetBPFingerprint, GetBTFingerprint
 from rdkit.Chem.Pharm2D import Generate, Gobbi_Pharm2D
 from rdkit.DataStructs.cDataStructs import TanimotoSimilarity
 
-import selfies
-from selfies import encoder, decoder
 
 st.set_page_config(
     page_title='Mutating Molecules with a Genetic Algorithm',
