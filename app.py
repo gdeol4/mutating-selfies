@@ -212,7 +212,7 @@ def get_reward(selfie_A_chars, selfie_B_chars):
 N                  = run_num  # Number of runs
 simlr_path_collect = []
 svg_file_name      = 'Scopolamine.svg'
-starting_mol_name  = 'Scopolamine'
+starting_mol_name  = 'Cannflavin A'
 data_file_name     = 'generated molecules.txt'
 starting_smile     = 'CC1=C(C2=C(CCC(O2)(C)COC3=CC=C(C=C3)CC4C(=O)NC(=O)S4)C(=C1O)C)C'
 show_gen_out       = False
@@ -220,8 +220,10 @@ len_random_struct  = len(get_selfie_chars(encoder(starting_smile))) # Length of 
 
 
 st.title("Mutating drug molecules ")
-st.markdown("I made this app using code from the paper *Beyond Generative Models: Superfast Traversal, Optimization, Novelty, Exploration and Discovery (STONED) Algorithm for Molecules using SELFIES*. I used the molecule scopolamine as the starting structure, a phytochemical with anti-parkinsons drug properties. The genetic algorithm is capable of producing novel molecules on par with GPU powered deep learning models without the expensive resources")
-
+#st.markdown("I made this app using code from the paper *Beyond Generative Models: Superfast Traversal, Optimization, Novelty, Exploration and Discovery (STONED) Algorithm for Molecules using SELFIES*. I used the molecule scopolamine as the starting structure, a phytochemical with anti-parkinsons drug properties. The genetic algorithm is capable of producing novel molecules on par with GPU powered deep learning models without the expensive resources")
+st.markdown('''This app demonstrates the algorithm for novel molecule generation described in the paper *Beyond Generative Models: Superfast Traversal, Optimization, Novelty, Exploration and Discovery (STONED) Algorithm for Molecules using SELFIES*.
+               The algoirthm uses a starting structure, Cannflavin A, the genetic algorithm then introduces "mutations" until a structurally viable compound is created. The algorithm is capable of producing novel molecules on par with GPU powered 
+               deep learning models without the expensive resources.") ''')
 #st.sidebar.title("")
 
 if st.sidebar.button("Generate Molecules"):
@@ -321,21 +323,21 @@ if st.sidebar.button("Generate Molecules"):
     #st.image(rdkit.Chem.Draw.MolsToImage(mols[-1:], subImgSize=(2000, 2000), legends=None))
     #st.image(rdkit.Chem.Draw.MolsToImage(mols[-5:], subImgSize=(4000, 4000), title='RDKit Molecule'))
     #st.image(rdkit.Chem.Draw.MolsToGridImage(mols[-1], molsPerRow=3, subImgSize=(1000, 1000), highlightBondLists=None, useSVG=True))
-    scopo = Chem.MolFromSmiles("CC1=C(C2=C(CCC(O2)(C)COC3=CC=C(C=C3)CC4C(=O)NC(=O)S4)C(=C1O)C)C")
-    filename = "Scopolamine.png"
+    cann = Chem.MolFromSmiles("CC(=CCCC(=CCC1=C(C2=C(C=C1O)OC(=CC2=O)C3=CC(=C(C=C3)O)OC)O)C)C")
+    filename = "CannflavinA.png"
     filename2 = "Novel.png"
     novel = mols[-15]
 
-    with st.beta_container():
+    with st.container():
         st.write("Number of molecules generated: ", len(mols))
-        st.write("Similiarty to scopolamine: ", float(scores[-15]))
+        st.write("Similiarty to Cannflavin A: ", float(scores[-15]))
 
-    with st.beta_container():
-        col1,col2 = st.beta_columns(2)
+    with st.container():
+        col1,col2 = st.columns(2)
 
-        rdkit.Chem.Draw.MolToImageFile(scopo, filename, size=(2000, 2000), kekulize=True, wedgeBonds=True)
+        rdkit.Chem.Draw.MolToImageFile(cann, filename, size=(2000, 2000), kekulize=True, wedgeBonds=True)
         col1.subheader("Original Molecule")
-        col1.image("Scopolamine.png")
+        col1.image("CannflavinA.png")
 
         rdkit.Chem.Draw.MolToImageFile(novel, filename2, size=(2000, 2000), kekulize=True, wedgeBonds=True)
         col2.subheader("Mutated Molecule")
