@@ -5,6 +5,3 @@ channels:
 dependencies:
   - libgcc=5.2.0
   - rdkit
-  - streamlit
-  - numpy
-  - selfies
